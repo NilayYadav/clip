@@ -1,4 +1,4 @@
-module github.com/beam-cloud/clip
+module github.com/NilayYadav/clip
 
 go 1.20
 
