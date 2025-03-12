@@ -14,9 +14,10 @@ import (
 
 type FSNode struct {
 	fs.Inode
-	filesystem *ClipFileSystem
-	clipNode   *common.ClipNode
-	attr       fuse.Attr
+	filesystem   *ClipFileSystem
+	clipNode     *common.ClipNode
+	attr         fuse.Attr
+	supportsMmap bool
 }
 
 func (n *FSNode) log(format string, v ...interface{}) {
@@ -27,6 +28,35 @@ func (n *FSNode) log(format string, v ...interface{}) {
 
 func (n *FSNode) OnAdd(ctx context.Context) {
 	n.log("OnAdd called")
+}
+
+func (n *FSNode) Init(ctx context.Context) {
+	n.supportsMmap = true
+}
+
+func (n *FSNode) Mmap(ctx context.Context, f fs.FileHandle, off int64, sz int64, flags uint32) (bool, error) {
+	n.log("Mmap called with offset: %d, size: %d, flags: %d", off, sz, flags)
+
+	// Check if we need to pad with null terminator
+	if off+sz > int64(n.clipNode.DataLen) {
+		// Create a padded buffer that includes null terminator
+		paddedSize := off + sz
+		paddedBuf := make([]byte, paddedSize)
+
+		// Read the actual file content
+		_, err := n.filesystem.s.ReadFile(n.clipNode, paddedBuf[:n.clipNode.DataLen], 0)
+		if err != nil {
+			return false, err
+		}
+
+		// Add null terminator
+		paddedBuf[n.clipNode.DataLen] = 0
+
+		// Return the padded buffer
+		return true, nil
+	}
+
+	return false, nil
 }
 
 func (n *FSNode) Getattr(ctx context.Context, fh fs.FileHandle, out *fuse.AttrOut) syscall.Errno {
@@ -92,11 +122,24 @@ func (n *FSNode) Opendir(ctx context.Context) syscall.Errno {
 
 func (n *FSNode) Open(ctx context.Context, flags uint32) (fh fs.FileHandle, fuseFlags uint32, errno syscall.Errno) {
 	n.log("Open called with flags: %v", flags)
-	return nil, 0, fs.OK
+	if flags&syscall.MAP_PRIVATE != 0 || flags&syscall.MAP_SHARED != 0 {
+		// Set FUSE direct IO flag for mmap
+		fuseFlags |= fuse.FOPEN_DIRECT_IO
+	}
+
+	return nil, fuseFlags, fs.OK
 }
 
 func (n *FSNode) Read(ctx context.Context, f fs.FileHandle, dest []byte, off int64) (fuse.ReadResult, syscall.Errno) {
 	n.log("Read called with offset: %v", off)
+
+	if off >= int64(n.clipNode.DataLen) {
+		// Return zeros for reads beyond file size
+		for i := range dest {
+			dest[i] = 0
+		}
+		return fuse.ReadResultData(dest), fs.OK
+	}
 
 	// Length of the content to read
 	length := int64(len(dest))
