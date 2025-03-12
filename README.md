@@ -2,7 +2,7 @@
 
 CLIP (Compact and Lightweight Immutable Packaging) is a simple file format, similar to tar, but designed for storage of read-only data. The primary feature of CLIP is its transparency, enabling direct access to its content without extraction, even over remote storage. CLIP can be mounted as an S3-backed FUSE filesystem, or can be extracted like a tar file.
 
-It is primary used as the image format for the [Beam](https://github.com/beam-cloud/beam) distributed container engine.
+It is primary used as the image format for the [Beam](https://github.com/NilayYadav/beam) distributed container engine.
 
 ## Features
 
@@ -21,4 +21,4 @@ CLIP filesystem is under the MIT license. See the [LICENSE](LICENSE.md) file for
 
 ## Support
 
-If you encounter any issues or have feature requests, please open an issue on our [GitHub page](https://github.com/beam-cloud/clip).
+If you encounter any issues or have feature requests, please open an issue on our [GitHub page](https://github.com/NilayYadav/clip).

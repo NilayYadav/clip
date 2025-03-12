@@ -18,7 +18,7 @@ fi
 
 
 # Get the download URL for the latest release
-DOWNLOAD_URL=$(curl -s https://api.github.com/repos/beam-cloud/clip/releases/latest \
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/NilayYadav/clip/releases/latest \
 | grep browser_download_url \
 | grep $OS-$ARCH \
 | cut -d '"' -f 4)

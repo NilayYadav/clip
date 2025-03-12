@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	common "github.com/beam-cloud/clip/pkg/common"
-	"github.com/beam-cloud/clip/pkg/storage"
+	common "github.com/NilayYadav/clip/pkg/common"
+	"github.com/NilayYadav/clip/pkg/storage"
 )
 
 func init() {

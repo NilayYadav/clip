@@ -3,7 +3,7 @@ package storage
 import (
 	"errors"
 
-	"github.com/beam-cloud/clip/pkg/common"
+	"github.com/NilayYadav/clip/pkg/common"
 )
 
 type ClipStorageInterface interface {

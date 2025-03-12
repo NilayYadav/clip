@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/beam-cloud/clip/pkg/common"
-	"github.com/beam-cloud/clip/pkg/storage"
+	"github.com/NilayYadav/clip/pkg/common"
+	"github.com/NilayYadav/clip/pkg/storage"
 	"github.com/hanwen/go-fuse/v2/fs"
 	"github.com/hanwen/go-fuse/v2/fuse"
 )

@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/beam-cloud/clip/pkg/archive"
-	"github.com/beam-cloud/clip/pkg/clipfs"
-	"github.com/beam-cloud/clip/pkg/common"
-	"github.com/beam-cloud/clip/pkg/storage"
+	"github.com/NilayYadav/clip/pkg/archive"
+	"github.com/NilayYadav/clip/pkg/clipfs"
+	"github.com/NilayYadav/clip/pkg/common"
+	"github.com/NilayYadav/clip/pkg/storage"
 	"github.com/hanwen/go-fuse/v2/fs"
 	"github.com/hanwen/go-fuse/v2/fuse"
 )

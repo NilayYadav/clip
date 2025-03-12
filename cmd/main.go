@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/beam-cloud/clip/pkg/commands"
+	"github.com/NilayYadav/clip/pkg/commands"
 	log "github.com/okteto/okteto/pkg/log"
 	"github.com/spf13/cobra"
 )

@@ -21,7 +21,7 @@ import (
 	log "github.com/okteto/okteto/pkg/log"
 	"golang.org/x/sys/unix"
 
-	common "github.com/beam-cloud/clip/pkg/common"
+	common "github.com/NilayYadav/clip/pkg/common"
 
 	"github.com/karrick/godirwalk"
 	"github.com/tidwall/btree"

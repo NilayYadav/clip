@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/beam-cloud/clip/pkg/clip"
+	"github.com/NilayYadav/clip/pkg/clip"
 	"github.com/spf13/cobra"
 )
 

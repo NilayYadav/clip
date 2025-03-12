@@ -7,7 +7,7 @@ import (
 	"path"
 	"syscall"
 
-	"github.com/beam-cloud/clip/pkg/common"
+	"github.com/NilayYadav/clip/pkg/common"
 	"github.com/hanwen/go-fuse/v2/fs"
 	"github.com/hanwen/go-fuse/v2/fuse"
 )

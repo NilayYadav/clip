@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/beam-cloud/clip/pkg/common"
+	"github.com/NilayYadav/clip/pkg/common"
 )
 
 type LocalClipStorage struct {
